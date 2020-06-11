@@ -13,12 +13,14 @@ private:
     int third;
     int fourth;
 
-    vector <char> move;
+    //vector <char> move;
     //vector <char> shelf;
 public:
     NaiveRobot(int start);
     vector<char> sort(vector<char> shelf);
     vector<char> replace(int i, vector<char> shelf);
+
+    int getCounter() const;
 
 
 };

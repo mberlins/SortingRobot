@@ -9,13 +9,15 @@ class Generator
 private:
     vector <char> shelf;
     int size;
+    int quality;
 
     //void setShelf();
     //list<char> getShelf();
 
 public:
-    Generator(int size);
+    Generator(int size, int quality);
     void printShelf();
+    void addChar(int colour);
     const vector <char> &getShelf() const;
     vector<char> getFour(int beginning);
 

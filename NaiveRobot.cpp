@@ -13,6 +13,11 @@ NaiveRobot:: NaiveRobot(int start)
 
 }
 
+int NaiveRobot::getCounter() const
+{
+    return counter;
+}
+
 vector<char> NaiveRobot:: sort(vector<char> shelf)
 {
     cout<<"\n\n"<<endl;
@@ -33,10 +38,10 @@ vector<char> NaiveRobot:: sort(vector<char> shelf)
     while (1)
     {
         //move.clear();
-        counter++;
+        //counter++;
         tmpCounter++;
 
-        if (tmpCounter==100000)
+        if (tmpCounter==1000)
             break;
 
         if(i>=shelf.size())
@@ -85,19 +90,22 @@ vector<char> NaiveRobot:: sort(vector<char> shelf)
 
     for (int j = 0; j < shelf.size(); j++)
     {
+        //cout<<"Naive sort done"<<endl;
         cout<<shelf[j]<<" ";
 
         if (j%50 == 49)
             cout<<" "<< endl;
     }
 
-    cout<<"\n\n"<<counter<<endl;
+    cout<<"\n\nWykonano: "<<counter<<" operacji"<<endl;
 
     return shelf;
 }
 
 vector<char> NaiveRobot:: replace(int i, vector<char> shelf)
 {
+    counter++;
+
     vector<char> move;
 
     move.push_back(shelf[i]);
