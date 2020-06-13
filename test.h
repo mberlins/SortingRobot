@@ -10,23 +10,21 @@
 
 using namespace std;
 
+/* Klasa Test przeprowadza określoną ilość sortowań za pomocą każdego algorytmu liczy i przechowuje czasy ich wykonania oraz ilości wykonanych operacji*/
 class Test
 {
 private:
-    vector<int> naiveOperations;
-    vector<int> smartOperations;
-    vector<int> smartOperationsBis;
+    vector<int> naiveOperations;                            // tablica przechowująca ilości operacji poszczególnych wywołań algorytmu naiwnego
+    vector<int> smartOperations;                            // tablica przechowująca ilości operacji poszczególnych wywołań algorytmu "smart"
+    vector<int> smartOperationsBis;                         // tablica przechowująca ilości operacji poszczególnych wywołań algorytmu "smartbis""
 
-    vector<int> naiveTime;
-    vector<int> smartTime;
-    vector<int> smartTimeBis;
-    /*NaiveRobot naiveRobot;
-    SmartRobot smartRobot;
-    SmartRobotBis smartRobotBis;*/
+    vector<int> naiveTime;                                  // tablica przechowująca czasy wykonania poszczególnych wywołań algorytmu naiwnego
+    vector<int> smartTime;                                  // tablica przechowująca czasy wykonania poszczególnych wywołań algorytmu "smart"
+    vector<int> smartTimeBis;                               // tablica przechowująca czasy wykonania poszczególnych wywołań algorytmu "smartBis"
 
 public:
     Test(int i);
-    void conductTests(int iterations);
+    void conductTests(int iterations, int quality);
     void printResults();
 
 };

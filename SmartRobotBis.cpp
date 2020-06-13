@@ -7,27 +7,29 @@
 
 using namespace std;
 
+/* Konstruktor klasy SmartRobotBis, licznik operacji jest ustawiany na wartość przekazaną parametrem start */
 SmartRobotBis::SmartRobotBis(int start) : NaiveRobot(start)
 {
     counter = start;
 }
-
+//zwraca licznik operacji
 int SmartRobotBis:: getCounter() const
 {
     return counter;
 }
-
+// ustawia licznik operacji na zadaną wartość
 void SmartRobotBis::setCounter(int counter)
 {
     SmartRobotBis::counter = counter;
 }
-
+/* Funckja przeprowadzająca sortowanie półki algorytmem poszukującym par CMYx i xxxK, CMxx i xxYK oraz Cxxx oraz xMYK, przenoszącym
+ * te pary na koniec , a następnie wycinającym czwórki xxxx "ze środka".
+ * Jako argument przyjmuje półkę shelf.*/
 vector<char> SmartRobotBis:: smartSort(vector<char> shelf)
 {
     counter = 0;
 
     int j = 0;
-
     while(true)
     {
         if (j >= shelf.size()-5)
@@ -93,6 +95,21 @@ vector<char> SmartRobotBis:: smartSort(vector<char> shelf)
         counter += 3;
     }
 
+    j = 0;
+    while(true)
+    {
+        if (j >= shelf.size()-5)
+            break;
+        if (shelf[j] == 'C' && shelf[j+1] == 'M' && shelf[j+2] == 'Y' && shelf [j+3] == 'K')
+        {
+            counter++;
+            shelf = replace(j,shelf);
+            j = j + 4;
+            continue;
+        }
+        j++;
+    }
+
     for (int j = 0; j < shelf.size(); j++)
     {
         cout<<shelf[j]<<" ";
@@ -105,6 +122,9 @@ vector<char> SmartRobotBis:: smartSort(vector<char> shelf)
     return shelf;
 }
 
+/* Funckja szuka czwórki w formacie CMYx, a następnie wywołuje funkcje check w celu sprawdzenia możliwości
+ * przeniesienia czwórki. Jeśli jest to możliwe zwraca indeks na jej pierwszy element.
+ * Jako argument przyjmuje półkę shelf. */
 int SmartRobotBis:: findCMY(vector<char> shelf)
 {
     int tmp;
@@ -122,12 +142,15 @@ int SmartRobotBis:: findCMY(vector<char> shelf)
     return -1;
 }
 
+/* Funkcja szuka czwórki w formacie xxxK, a następnie wywołuje funkcje check w celu sprawdzenia możliwości
+* przeniesienia czwórki. Jeśli jest to możliwe zwraca indeks na jej pierwszy element.
+* Jako argument przyjmuje półkę shelf. */
 int SmartRobotBis:: findK(vector<char> shelf)
 {
     int tmp;
     for (int i = 0; i< shelf.size()-5; i++)
     {
-        if(shelf[i+3] == 'K')
+        if(shelf[i+3] == 'K' && shelf[i] != 'C')
         {
             tmp = check(shelf, shelf[i], i);
             if(tmp==0)
@@ -139,6 +162,9 @@ int SmartRobotBis:: findK(vector<char> shelf)
     return -1;
 }
 
+/* Funkcja szuka czwórki w formacie Cxxx, a następnie wywołuje funkcje check w celu sprawdzenia możliwości
+* przeniesienia czwórki. Jeśli jest to możliwe zwraca indeks na jej pierwszy element.
+* Jako argument przyjmuje półkę shelf. */
 int SmartRobotBis:: findC(vector<char> shelf)
 {
     int tmp;
@@ -156,6 +182,9 @@ int SmartRobotBis:: findC(vector<char> shelf)
     return -1;
 }
 
+/* Funkcja szuka czwórki w formacie xMYK, a następnie wywołuje funkcje check w celu sprawdzenia możliwości
+* przeniesienia czwórki. Jeśli jest to możliwe zwraca indeks na jej pierwszy element.
+* Jako argument przyjmuje półkę shelf. */
 int SmartRobotBis:: findMYK(vector<char> shelf)
 {
     int tmp;
@@ -173,6 +202,9 @@ int SmartRobotBis:: findMYK(vector<char> shelf)
     return -1;
 }
 
+/* Funkcja szuka czwórki w formacie CMxx, a następnie wywołuje funkcje check w celu sprawdzenia możliwości
+* przeniesienia czwórki. Jeśli jest to możliwe zwraca indeks na jej pierwszy element.
+* Jako argument przyjmuje półkę shelf. */
 int SmartRobotBis:: findCM(vector<char> shelf)
 {
     int tmp;
@@ -190,6 +222,9 @@ int SmartRobotBis:: findCM(vector<char> shelf)
     return -1;
 }
 
+/* Funkcja szuka czwórki w formacie xxYK, a następnie wywołuje funkcje check w celu sprawdzenia możliwości
+* przeniesienia czwórki. Jeśli jest to możliwe zwraca indeks na jej pierwszy element.
+* Jako argument przyjmuje półkę shelf. */
 int SmartRobotBis:: findYK(vector<char> shelf)
 {
     int tmp;

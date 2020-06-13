@@ -6,25 +6,26 @@
 
 using namespace std;
 
+/* Konstruktor klasy NaiveRobot, licznik operacji jest ustawiany na wartość przekazaną parametrem start */
 NaiveRobot:: NaiveRobot(int start)
 {
     counter = start;
     first = second = third = fourth = 0;
 
 }
-
+//zwraca licznik operacji
 int NaiveRobot::getCounter() const
 {
     return counter;
 }
-
+// ustawia licznik operacji na zadaną wartość
 void NaiveRobot::setCounter(int counter)
 {
     NaiveRobot::counter = counter;
 }
 
-
-
+/* Funkcja przeprowadzająca naiwne sortowanie półki, jako parametry przyjmuje półkę oraz liczbę całkowitą określającą tryb wykonania
+ * ( 0 - bez wyświetlania kroków pośrednich, 1 - z krokami pośrednimi) */
 vector<char> NaiveRobot:: sort(vector<char> shelf, int mode)
 {
     cout<<"\n\n"<<endl;
@@ -110,6 +111,7 @@ vector<char> NaiveRobot:: sort(vector<char> shelf, int mode)
     return shelf;
 }
 
+/* Funckja replace odpowiada za przeniesienie wybranej czwórki kolorów na koniec półki. Jako arguemnty przyjmuje indeks pierwszego elementu półki oraz półkę */
 vector<char> NaiveRobot:: replace(int i, vector<char> shelf)
 {
     counter++;
@@ -132,6 +134,8 @@ vector<char> NaiveRobot:: replace(int i, vector<char> shelf)
     return shelf;
 }
 
+/* Funkcja check sprawdza czy możliwe jest przeniesienie określonej czwórki, bez popsucia już istniejącej poprawnej czwórki.
+ * Jako argumenty przyjmuje półkę, indeks na początek czwórki oraz pierwszy element czwórki*/
 int NaiveRobot:: check(vector<char> shelf, char target, int position)
 {
     if (position != 0)

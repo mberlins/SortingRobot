@@ -4,15 +4,14 @@
 #include <vector>
 using namespace std;
 
+/* Klasa Generator odpowiada za utworzenie półki barwników zapełnionej kolorami ustawionymi w losowej kolejności.
+ * W zależności od parametru wygenerowane dane mogą być mniej lub bardziej uporządkowane */
 class Generator
 {
 private:
-    vector <char> shelf;
-    int size;
-    int quality;
-
-    //void setShelf();
-    //list<char> getShelf();
+    vector <char> shelf;                                    // półka z barwnikami
+    int size;                                               // rozmiar generowanej półki
+    int quality;                                            // tryb generowania
 
 public:
     Generator(int size, int quality);

@@ -5,15 +5,16 @@
 
 using namespace std;
 
-
+//zwraca półkę
 const vector<char> &Wczytywanie::getShelf() const {
     return shelf;
 }
-
+// ustawia półkę na zadaną w parametrze
 void Wczytywanie::setShelf(const vector<char> &shelf) {
     Wczytywanie::shelf = shelf;
 }
 
+/* Funckja wczytuje dane wprowadzone przez użytkownika do bufora, a następnie sprawdza i poprawia ich zawartość. */
 void Wczytywanie:: wczytaj()
 {
         string message;

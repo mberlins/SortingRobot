@@ -6,10 +6,11 @@
 
 using namespace std;
 
+/* Klasa SmartRobotBis dziedziczy po klasie NaiveRobot, przeprowadza działanie algorytmu tworzącego sekwencję CMYK z par CMYx i xxxK, Cxxx i xMYK oraz CMxx i xxYK*/
 class SmartRobotBis: public NaiveRobot
 {
 private:
-    int counter;
+    int counter;                                            // licznik operacji
 
 public:
     SmartRobotBis(int start);

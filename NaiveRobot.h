@@ -4,10 +4,11 @@
 #include <vector>
 using namespace std;
 
+/* Klasa NaiveRobot przeprowadza sortowanie półki metodą brute force */
 class NaiveRobot
 {
 private:
-    int counter;
+    int counter;                                // licznik operacji
     int first;
     int second;
     int third;

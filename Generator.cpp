@@ -8,12 +8,15 @@
 
 using namespace std;
 
+/* Konstruktor klasy Generator, ustawia pola size i quality na zadane parametrami wartości */
 Generator:: Generator(int size, int quality)
 {
    this->size = size;
    this->quality = size;
 }
 
+/* Funckja odpowiadająca za wygenerowanie półki zapełnionej barwnikami w losowej kolejności
+ * Parametr size informuje o rozmiarze półki, natomiast parametr quality decyduje czy dane bedą wyjściowo mniej lub bardziej posortowane*/
 void Generator:: setShelf(int size, int quality)
 {
 
@@ -51,25 +54,6 @@ void Generator:: setShelf(int size, int quality)
                 addChar(tmp + 4);
         }
     }
-    else if (quality == 2)                         // 60% na poprawny, 13% pozostałe
-    {
-        for (int i = 0; i < size; i++)
-        {
-            int tmp = rand()%4;
-            addChar(tmp);
-            int tmp2 = rand()%15;
-            i++;
-
-            if (tmp2 < 9)
-                addChar(tmp+1);
-            else if (tmp2 == 9 || tmp2 == 10)
-                addChar(tmp + 2);
-            else if (tmp2 == 11 || tmp2 == 12)
-                addChar(tmp + 3);
-            else if (tmp2 == 13 || tmp2 == 14)
-                addChar(tmp + 4);
-        }
-    }
     else if (quality == -1)                                 // przypadek pesymistyczny
     {
         for (int i = 0; i < size; i++)
@@ -89,7 +73,7 @@ void Generator:: setShelf(int size, int quality)
     }
 
 }
-
+/* Funckja dodaje na półkę określony kolor w zależności od otrzymanego parametru */
 void Generator:: addChar(int tmp)
 {
 
@@ -103,12 +87,13 @@ void Generator:: addChar(int tmp)
         shelf.push_back('K');
 }
 
-
+//zwraca półkę
 const vector <char> &Generator:: getShelf() const
 {
     return shelf;
 }
 
+/* Wypisuje na ekran zawartość półki */
 void Generator:: printShelf()
 {
     for (int i = 0; i < shelf.size(); i++)

@@ -14,8 +14,9 @@ Test:: Test( int i)
 {
 
 }
-
-void Test:: conductTests(int iterations)
+/* Funckja przeprowadza tyle wykonań każdego z algorytmów, ile zostało zadane w parametrze iterations. Mierzy czas wykonania
+ * każdego z sortowań i umieszcza je w odpowiedniej tablicy.  */
+void Test:: conductTests(int iterations, int quality)
 {
 
     NaiveRobot naiveRobot(0);
@@ -29,7 +30,7 @@ void Test:: conductTests(int iterations)
 
     for(int i = 0; i < iterations; i++)
     {
-        generator.setShelf(2000, 0);
+        generator.setShelf(2000, quality);
         tab = generator.getShelf();
 
         for (int i = 0; i< tab.size(); i++)
@@ -51,7 +52,6 @@ void Test:: conductTests(int iterations)
         tabBis = smartRobot.smartSort(tabBis,0);
         tabBis = naiveRobot.sort(tabBis,0);
         t2 = std::chrono::high_resolution_clock::now();
-
         int_ms = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1);
         smartTime.push_back(int_ms.count());
         int counter = smartRobot.getCounter() + naiveRobot.getCounter();
@@ -59,9 +59,13 @@ void Test:: conductTests(int iterations)
         smartRobot.setCounter(0);
         naiveRobot.setCounter(0);
 
+        t1 = std::chrono::high_resolution_clock::now();
         tabTer = smartRobotBis.smartSort(tabTer);
-        //tabTer = naiveRobot.sort(tabTer);
-        int counterBis = smartRobotBis.getCounter() /*+ naiveRobot.getCounter()*/;
+        tabTer = naiveRobot.sort(tabTer, 0);
+        t2 = std::chrono::high_resolution_clock::now();
+        int_ms = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1);
+        smartTimeBis.push_back(int_ms.count());
+        int counterBis = smartRobotBis.getCounter() + naiveRobot.getCounter();
         smartOperationsBis.push_back(counterBis);
         smartRobotBis.setCounter(0);
         naiveRobot.setCounter(0);
@@ -72,9 +76,11 @@ void Test:: conductTests(int iterations)
     }
 }
 
+/* Wyswietla w formie tabelki liczbę operacji oraz czas
+ * działania dla każdego z wywołan algorytmów sortujących.  */
 void Test:: printResults()
 {
-    cout<<"Naiwne operacje:    "<<"Smart operacje:     "<<"Czas naiwny:   "<<"Czas smart:    "<<endl;
+    cout<<"Naiwne operacje:    "<<"Smart operacje:     "<<"SmartBis operacje:  "<<"Czas naiwny:   "<<"Czas smart:    "<<"Czas smartBis:"<<endl;
 
     for (int i = 0; i < naiveOperations.size(); i++)
     {
@@ -82,11 +88,13 @@ void Test:: printResults()
         cout<<naiveOperations[i];
         cout.width(20);
         cout<<smartOperations[i];
+        cout.width(20);
+        cout<<smartOperationsBis[i];
         cout.width(15);
         cout<<naiveTime[i];
         cout.width(15);
         cout<<smartTime[i];
-        cout.width(20);
-        cout<<smartOperationsBis[i]<<endl;
+        cout.width(15);
+        cout<<smartTimeBis[i]<<endl;
     }
 }

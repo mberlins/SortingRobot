@@ -8,6 +8,8 @@
 #include "Wczytywanie.h"
 using namespace std;
 
+
+// W funkcji main dokonuje się główna pętla programu, uzytkownik może wybrać opcje wykonywania
 int main()
 {
 
@@ -79,17 +81,21 @@ int main()
             tabBis = smartRobot.smartSort(tabBis, 0);
             naiveRobot.sort(tabBis, 0);
 
-            /*
-             * tutaj smart robot bis
-             *
-             */
+            tabTer = smartRobotBis.smartSort(tabTer);
+            naiveRobot.sort(tabTer, 0);
 
         }
         if (x==3)
         {
-            Test test(0);
-            test.conductTests(1);
-            test.printResults();
+            int quality;
+            cout<<"Podaj jakosc generowanych danych ( 0 - przypadkowa, 1 - przypadek optymistyczny, -1 - przypadek pesymistyczny )"<<endl;
+            cin>>quality;
+            if (quality == 0 || quality == 1 || quality == -1)
+            {
+                Test test(0);
+                test.conductTests(10);
+                test.printResults();
+            }
         }
         if (x==0)
             break;

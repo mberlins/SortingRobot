@@ -6,10 +6,12 @@
 
 using namespace std;
 
+/*Klasa SmartRobotBis dziedziczy po klasie NaiveRobot, przeprowadza działanie algorytmu tworzącego sekwencję CMYK, za pomocą dostawiania
+ *  czwórek zaczynających się od pasującej do poprzedniej litery na koniec półki*/
 class SmartRobot: public NaiveRobot
 {
 private:
-    int counter;
+    int counter;                                                        // licznik operacji
 
 public:
     SmartRobot(int start);

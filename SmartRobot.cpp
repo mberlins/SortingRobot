@@ -7,20 +7,26 @@
 
 using namespace std;
 
+/* Konstruktor klasy SmartRobot, licznik operacji jest ustawiany na wartość przekazaną parametrem start */
 SmartRobot::SmartRobot(int start) : NaiveRobot(start)
 {
     counter = start;
 }
-
+//zwraca licznik operacji
 int SmartRobot::getCounter() const
 {
     return counter;
 }
-
+// ustawia licznik operacji na zadaną wartość
 void SmartRobot::setCounter(int counter) {
     SmartRobot::counter = counter;
 }
 
+/* Funckja przeprowadzająca sortowanie półki algorytmem tworzącym sekwencję CMYK, za pomocą dostawiania
+ *  czwórek zaczynających się od pasującej do poprzedniej litery na koniec półki. Przed rozpoczęciem właściwego sortowania wszystkie poprawne
+ *  czwórki CMYK są przemieszczane na koniec półki.
+ *  Jako parametry przyjmuje półkę oraz liczbę całkowitą określającą tryb wykonania -
+ *  ( 0 - bez wyświetlania kroków pośrednich, 1 - z krokami pośrednimi)*/
 vector<char> SmartRobot:: smartSort(vector<char> shelf, int mode)
 {
     counter = 0;
@@ -74,6 +80,9 @@ vector<char> SmartRobot:: smartSort(vector<char> shelf, int mode)
     return shelf;
 }
 
+/* Funkcja odnajduje na półce shelf czwórkę zaczynającą się zadaną w parametrze target literą. Po odnalezieniu indeksu
+ * pierwszej litey takiej czwórki, przekazuje go funkcji check w celu sprawdzenia możliwości przeniesienia czwórki.
+ * Jeśli poszukiwana czwórka nie istnieje zwraca wartość -1*/
 int SmartRobot:: findFour(vector<char> shelf, char target)
 {
     int tmp;

@@ -5,6 +5,7 @@
 
 using namespace std;
 
+/* Klasa wczytywanie odpowiada za odbieranie, sprawdzanie oraz poprawianie danych wprowadzonych przez użytkownika */
 class Wczytywanie
 {
 private:
