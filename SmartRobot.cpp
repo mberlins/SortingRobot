@@ -74,8 +74,15 @@ vector<char> SmartRobot:: smartSort(vector<char> shelf, int mode)
 
         counter++;
     }
-
+    
     cout<<"SmartSort done"<<endl;
+    for (int j = 0; j < shelf.size(); j++)
+    {
+        cout<<shelf[j]<<" ";
+
+        if (j%50 == 49)
+            cout<<" "<< endl;
+    }
     cout<<"\n\nWykonano: "<<counter<<" operacji"<<endl;
     return shelf;
 }

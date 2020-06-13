@@ -110,6 +110,7 @@ vector<char> SmartRobotBis:: smartSort(vector<char> shelf)
         j++;
     }
 
+    cout<<"SmartSortBis done "<<endl;
     for (int j = 0; j < shelf.size(); j++)
     {
         cout<<shelf[j]<<" ";
@@ -117,8 +118,7 @@ vector<char> SmartRobotBis:: smartSort(vector<char> shelf)
         if (j%50 == 49)
             cout<<" "<< endl;
     }
-
-    cout<<"\n\nWykonano: "<<counter<<" operacji (SmartSortBis)"<<endl;
+    cout<<"\n\nWykonano: "<<counter<<" operacji"<<endl;
     return shelf;
 }
 

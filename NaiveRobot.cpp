@@ -57,37 +57,25 @@ vector<char> NaiveRobot:: sort(vector<char> shelf, int mode)
         if(i>=shelf.size())
             break;
 
-        if (shelf[i]=='C')
-        {
-            first = 1;
-        } else
+        if (shelf[i] != 'C')
         {
             shelf = replace(i,shelf);
             continue;
         }
 
-        if (shelf[i+1]=='M')
-        {
-            second = 1;
-        } else
+        if (shelf[i+1] != 'M')
         {
             shelf = replace(i+1, shelf);
             continue;
         }
 
-        if (shelf[i+2] == 'Y')
-        {
-            third = 1;
-        } else
+        if (shelf[i+2] != 'Y')
         {
             shelf = replace(i+2, shelf);
             continue;
         }
 
-        if (shelf[i+3]=='K')
-        {
-            fourth = 1;
-        } else
+        if (shelf[i+3] != 'K')
         {
             shelf = replace(i+3, shelf);
             continue;
@@ -106,7 +94,7 @@ vector<char> NaiveRobot:: sort(vector<char> shelf, int mode)
         if (j%50 == 49)
             cout<<" "<< endl;
     }
-    cout<<"\n\nWykonano: "<<counter<<" operacji"<<endl;
+    cout<<"\nWykonano: "<<counter<<" operacji"<<endl;
 
     return shelf;
 }

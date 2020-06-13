@@ -19,7 +19,7 @@ int main()
         srand(time(0));
 
         int x;
-        cout<<"Wybierz tryb działania programu: \nWczytywanie danych z klawiatury - wcisnij 1.\nGenerowanie i segregowanie - wcisnij 2.\nGenerowanie, segregowanie i podsumowanie - wcisnij 3.\n";
+        cout<<"Wybierz tryb dzialania programu: \nWczytywanie danych z klawiatury - wcisnij 1.\nGenerowanie i segregowanie - wcisnij 2.\nGenerowanie, segregowanie i podsumowanie - wcisnij 3.\n";
         cout<<"Aby opuscic program wybierz 0\n\n";
         cin>>x;
 
@@ -93,7 +93,7 @@ int main()
             if (quality == 0 || quality == 1 || quality == -1)
             {
                 Test test(0);
-                test.conductTests(10);
+                test.conductTests(10, quality);
                 test.printResults();
             }
         }
