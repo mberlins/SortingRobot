@@ -18,28 +18,37 @@ int NaiveRobot::getCounter() const
     return counter;
 }
 
-vector<char> NaiveRobot:: sort(vector<char> shelf)
+void NaiveRobot::setCounter(int counter)
+{
+    NaiveRobot::counter = counter;
+}
+
+
+
+vector<char> NaiveRobot:: sort(vector<char> shelf, int mode)
 {
     cout<<"\n\n"<<endl;
 
-    int tmpCounter=0;
-
-    for (int i = 0; i < shelf.size(); i++)
+    for (int j = 0; j < shelf.size(); j++)
     {
-        cout<<shelf[i]<<" ";
+        cout<<shelf[j]<<" ";
 
-        if (i%50 == 49)
+        if (j%50 == 49)
             cout<<" "<< endl;
     }
-    cout<<"\n\n"<<endl;
+
+    int tmpCounter=0;
 
     int i =0;
 
     while (1)
     {
-        //move.clear();
-        //counter++;
-        tmpCounter++;
+        if (mode == 1)
+        {
+            for (int i = 0; i < shelf.size(); i++)
+                cout << shelf[i] << " ";
+        }
+            tmpCounter++;
 
         if (tmpCounter==1000)
             break;
@@ -88,15 +97,14 @@ vector<char> NaiveRobot:: sort(vector<char> shelf)
         tmpCounter = 0;
     }
 
+    cout<<"Naive sort done"<<endl;
     for (int j = 0; j < shelf.size(); j++)
     {
-        //cout<<"Naive sort done"<<endl;
         cout<<shelf[j]<<" ";
 
         if (j%50 == 49)
             cout<<" "<< endl;
     }
-
     cout<<"\n\nWykonano: "<<counter<<" operacji"<<endl;
 
     return shelf;
@@ -105,15 +113,12 @@ vector<char> NaiveRobot:: sort(vector<char> shelf)
 vector<char> NaiveRobot:: replace(int i, vector<char> shelf)
 {
     counter++;
-
     vector<char> move;
 
     move.push_back(shelf[i]);
     move.push_back(shelf[i+1]);
     move.push_back(shelf[i+2]);
     move.push_back(shelf[i+3]);
-
-    //cout<<move[0]<<move[1]<<move[2]<<move[3]<<endl;
 
     auto it = shelf.begin();
     it = it + i;
@@ -125,4 +130,44 @@ vector<char> NaiveRobot:: replace(int i, vector<char> shelf)
     shelf.push_back(move[3]);
 
     return shelf;
+}
+
+int NaiveRobot:: check(vector<char> shelf, char target, int position)
+{
+    if (position != 0)
+    {
+        if (target == 'C')
+        {
+            if (shelf[position-1] == 'K')
+                return 0;
+        }
+        else if (target == 'M')
+        {
+            if (shelf[position-1] == 'C')
+                return 0;
+        }
+        else if (target == 'Y')
+        {
+            if (shelf[position-1] == 'M')
+                return 0;
+        }
+        else if (target == 'K')
+        {
+            if (shelf[position-1] == 'Y')
+                return 0;
+        }
+    }
+
+    if (position < shelf.size() - 5)
+    {
+        if (shelf[position+3]=='K' && shelf[position+4] == 'C')
+            return 0;
+        else if (shelf[position+3]=='C' && shelf[position+4] == 'M')
+            return 0;
+        else if (shelf[position+3]=='M' && shelf[position+4] == 'Y')
+            return 0;
+        else if (shelf[position+3]=='Y' && shelf[position+4] == 'K')
+            return 0;
+    }
+    return 1;
 }

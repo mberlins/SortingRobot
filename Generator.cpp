@@ -10,7 +10,14 @@ using namespace std;
 
 Generator:: Generator(int size, int quality)
 {
-    srand(time(NULL));
+   this->size = size;
+   this->quality = size;
+}
+
+void Generator:: setShelf(int size, int quality)
+{
+
+    shelf.clear();
     this->size = size;
     this->quality = quality;
 
@@ -60,6 +67,23 @@ Generator:: Generator(int size, int quality)
             else if (tmp2 == 11 || tmp2 == 12)
                 addChar(tmp + 3);
             else if (tmp2 == 13 || tmp2 == 14)
+                addChar(tmp + 4);
+        }
+    }
+    else if (quality == -1)                                 // przypadek pesymistyczny
+    {
+        for (int i = 0; i < size; i++)
+        {
+            int tmp = rand()%4;
+            addChar(tmp);
+            i++;
+            int tmp2 = rand()%3;
+
+            if (tmp2 == 0)
+                addChar(tmp+2);
+            else if (tmp2 == 1)
+                addChar(tmp + 3);
+            else if (tmp2 == 2)
                 addChar(tmp + 4);
         }
     }

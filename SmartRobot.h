@@ -12,12 +12,14 @@ private:
     int counter;
 
 public:
-    SmartRobot(int start, int i);
-    vector<char> smartSort(vector<char> shelf);
+    SmartRobot(int start);
+    vector<char> smartSort(vector<char> shelf, int mode);
     int findFour(vector<char> shelf, char target);
-    int check(vector<char> shelf, char target, int position);
+
 
     int getCounter() const;
+
+    void setCounter(int counter);
     //vector<char> replace(int i, vector<char> shelf);
 
 };

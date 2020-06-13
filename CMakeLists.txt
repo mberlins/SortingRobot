@@ -3,4 +3,4 @@ project(AALrobotBis)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(AALrobotBis main.cpp Generator.h NaiveRobot.h SmartRobot.h SmartRobot.cpp NaiveRobot.cpp Generator.cpp SmartRobotBis.h SmartRobotBis.cpp)
+add_executable(AALrobotBis main.cpp Generator.h NaiveRobot.h SmartRobot.h SmartRobot.cpp NaiveRobot.cpp Generator.cpp SmartRobotBis.h SmartRobotBis.cpp test.h Test.cpp Wczytywanie.h Wczytywanie.cpp)

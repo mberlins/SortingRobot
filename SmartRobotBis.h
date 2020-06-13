@@ -12,12 +12,19 @@ private:
     int counter;
 
 public:
-    SmartRobotBis(int start, int i);
+    SmartRobotBis(int start);
     vector<char> smartSort(vector<char> shelf);
-    int findFour(vector<char> shelf, char target);
-    int check(vector<char> shelf, char target, int position);
+    int findCMY(vector<char> shelf);
+    int findK(vector<char> shelf);
+    int findC(vector<char> shelf);
+    int findMYK(vector<char> shelf);
+    int findCM(vector<char> shelf);
+    int findYK(vector<char> shelf);
+    //int findFour(vector<char> shelf, int target);
 
     int getCounter() const;
+
+    void setCounter(int counter);
 };
 
 

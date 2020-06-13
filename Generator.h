@@ -20,6 +20,7 @@ public:
     void addChar(int colour);
     const vector <char> &getShelf() const;
     vector<char> getFour(int beginning);
+    void setShelf(int size, int quality);
 
 };
 

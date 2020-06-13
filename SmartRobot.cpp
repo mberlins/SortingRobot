@@ -7,12 +7,21 @@
 
 using namespace std;
 
-SmartRobot::SmartRobot(int start, int i) : NaiveRobot(start)
+SmartRobot::SmartRobot(int start) : NaiveRobot(start)
 {
-    counter = i;
+    counter = start;
 }
 
-vector<char> SmartRobot:: smartSort(vector<char> shelf)
+int SmartRobot::getCounter() const
+{
+    return counter;
+}
+
+void SmartRobot::setCounter(int counter) {
+    SmartRobot::counter = counter;
+}
+
+vector<char> SmartRobot:: smartSort(vector<char> shelf, int mode)
 {
     counter = 0;
 
@@ -28,6 +37,13 @@ vector<char> SmartRobot:: smartSort(vector<char> shelf)
             counter++;
             shelf = replace(j,shelf);
             j = j + 4;
+
+            if (mode == 1)
+            {
+                for (int i = 0; i < shelf.size(); i++)
+                    cout << shelf[i] << " ";
+            }
+
             continue;
         }
         j++;
@@ -43,17 +59,17 @@ vector<char> SmartRobot:: smartSort(vector<char> shelf)
             break;
 
         shelf = replace(check, shelf);
+
+        if (mode == 1)
+        {
+            for (int i = 0; i < shelf.size(); i++)
+                cout << shelf[i] << " ";
+        }
+
         counter++;
     }
 
     cout<<"SmartSort done"<<endl;
-    for (int i = 0; i < shelf.size(); i++)
-    {
-        cout<<shelf[i]<<" ";
-
-        if (i%50 == 49)
-            cout<<" "<< endl;
-    }
     cout<<"\n\nWykonano: "<<counter<<" operacji"<<endl;
     return shelf;
 }
@@ -104,43 +120,3 @@ int SmartRobot:: findFour(vector<char> shelf, char target)
     return -1;
 }
 
-int SmartRobot:: check(vector<char> shelf, char target, int position)
-{
-    //cout << target <<" "<< position <<  endl;
-    if (position != 0)
-    {
-        if (target == 'C')
-        {
-            if (shelf[position-1] == 'K')
-                return 0;
-        }
-        else if (target == 'M')
-        {
-            if (shelf[position-1] == 'C')
-                return 0;
-        }
-        else if (target == 'Y')
-        {
-            if (shelf[position-1] == 'M')
-                return 0;
-        }
-        else if (target == 'K')
-        {
-            if (shelf[position-1] == 'Y')
-                return 0;
-        }
-    }
-
-    if (position < shelf.size() - 5)
-    {
-        if (shelf[position+3]=='K' && shelf[position+4] == 'C')
-            return 0;
-        else if (shelf[position+3]=='C' && shelf[position+4] == 'M')
-            return 0;
-        else if (shelf[position+3]=='M' && shelf[position+4] == 'Y')
-            return 0;
-        else if (shelf[position+3]=='Y' && shelf[position+4] == 'K')
-            return 0;
-    }
-    return 1;
-}
