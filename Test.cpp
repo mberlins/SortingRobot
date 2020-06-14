@@ -1,3 +1,6 @@
+//Created by Michał Berliński
+//Klasa odpowiada za iteracyjne wykonywanie sortowań, podsumowanie i wyświetlenie ich rezultatów
+
 #include <vector>
 #include <iostream>
 #include "SmartRobot.h"
@@ -16,7 +19,7 @@ Test:: Test( int i)
 }
 /* Funckja przeprowadza tyle wykonań każdego z algorytmów, ile zostało zadane w parametrze iterations. Mierzy czas wykonania
  * każdego z sortowań i umieszcza je w odpowiedniej tablicy.  */
-void Test:: conductTests(int iterations, int quality)
+void Test:: conductTests(int iterations, int rozmiarStartowy, int krok, int quality)
 {
 
     NaiveRobot naiveRobot(0);
@@ -30,7 +33,7 @@ void Test:: conductTests(int iterations, int quality)
 
     for(int i = 0; i < iterations; i++)
     {
-        generator.setShelf(2000, quality);
+        generator.setShelf(rozmiarStartowy + i*krok, quality);
         tab = generator.getShelf();
 
         for (int i = 0; i< tab.size(); i++)
@@ -57,10 +60,10 @@ void Test:: conductTests(int iterations, int quality)
         int counter = smartRobot.getCounter() + naiveRobot.getCounter();
         smartOperations.push_back(counter);
         smartRobot.setCounter(0);
-        naiveRobot.setCounter(0);
 
         t1 = std::chrono::high_resolution_clock::now();
         tabTer = smartRobotBis.smartSort(tabTer);
+	naiveRobot.setCounter(0);
         tabTer = naiveRobot.sort(tabTer, 0);
         t2 = std::chrono::high_resolution_clock::now();
         int_ms = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1);
@@ -82,7 +85,7 @@ void Test:: printResults()
 {
     cout<<"Naiwne operacje:    "<<"Smart operacje:     "<<"SmartBis operacje:  "<<"Czas naiwny:   "<<"Czas smart:    "<<"Czas smartBis:"<<endl;
 
-    for (int i = 0; i < naiveOperations.size(); i++)
+    for (int i = 0; i < smartTimeBis.size(); i++)
     {
         cout.width(20);
         cout<<naiveOperations[i];

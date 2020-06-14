@@ -1,3 +1,6 @@
+// Created by Michał Berliński
+// Klasa odpowiada za przyjmowanie oraz ewentualne poprawianie danych wprowadzonych przez użytkownika
+
 #include <vector>
 #include <iostream>
 #include <cstdio>

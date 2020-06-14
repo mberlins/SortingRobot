@@ -1,3 +1,6 @@
+//Created by Michał Berliński
+//Klasa sortuje półkę algorytmem naiwnym
+
 #include <time.h>
 #include <iostream>
 #include <vector>
@@ -47,7 +50,10 @@ vector<char> NaiveRobot:: sort(vector<char> shelf, int mode)
         if (mode == 1)
         {
             for (int i = 0; i < shelf.size(); i++)
-                cout << shelf[i] << " ";
+	    {
+		cout << shelf[i] << " ";	
+	    }
+	    cout<<"\n";
         }
             tmpCounter++;
 

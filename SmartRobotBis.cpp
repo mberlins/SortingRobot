@@ -1,3 +1,6 @@
+//Created by Michał Berliński
+//Klasa sortująca półkę algorytmem tworzącym czwórki CMYK na końcu półki w wyniku łączenia w pary określonych czwórek
+
 #include "SmartRobotBis.h"
 #include <time.h>
 #include <iostream>
@@ -61,6 +64,7 @@ vector<char> SmartRobotBis:: smartSort(vector<char> shelf)
         counter += 3;
     }
 
+
     // szukamy Cxxx i xMYK
     while(true)
     {
@@ -77,6 +81,7 @@ vector<char> SmartRobotBis:: smartSort(vector<char> shelf)
         shelf = replace(shelf.size() - 7, shelf);
         counter += 3;
     }
+
 
     // szukamy CMxx i xxYK
     while (true)

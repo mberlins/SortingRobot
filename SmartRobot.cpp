@@ -1,3 +1,6 @@
+//Created by Michał Berliński
+//Klasa sortuje półkę algorytmem ustawiającym poprawne sekwencje na końcu półki
+
 #include "SmartRobot.h"
 #include <time.h>
 #include <iostream>
@@ -69,12 +72,15 @@ vector<char> SmartRobot:: smartSort(vector<char> shelf, int mode)
         if (mode == 1)
         {
             for (int i = 0; i < shelf.size(); i++)
-                cout << shelf[i] << " ";
+	    {
+		cout << shelf[i] << " ";	
+	    }
+	    cout<<"\n";
         }
 
         counter++;
     }
-    
+
     cout<<"SmartSort done"<<endl;
     for (int j = 0; j < shelf.size(); j++)
     {

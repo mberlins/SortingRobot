@@ -1,3 +1,6 @@
+//Created by Michał Berliński
+//Funkcja main odpowiada za interakcję z użytkownikiem oraz uruchomienie programu w odpowiednim trybie.
+
 #include <iostream>
 #include <time.h>
 #include "Generator.h"
@@ -10,20 +13,22 @@ using namespace std;
 
 
 // W funkcji main dokonuje się główna pętla programu, uzytkownik może wybrać opcje wykonywania
-int main()
+int main(int argc, char *argv[])
 {
 
+    cout<<argv[1]<<endl;
+    cout<<argv[2]<<endl;
+    cout<<argv[3]<<endl;
+    cout<<argv[4]<<endl;
 
-    while (1)
-    {
+    int trybPracy = atoi(argv[1]);
+    int iteracje = atoi(argv[2]);
+    int rozmiarStartowy = atoi(argv[3]);
+    int krok = atoi(argv[4]);
+    
         srand(time(0));
 
-        int x;
-        cout<<"Wybierz tryb dzialania programu: \nWczytywanie danych z klawiatury - wcisnij 1.\nGenerowanie i segregowanie - wcisnij 2.\nGenerowanie, segregowanie i podsumowanie - wcisnij 3.\n";
-        cout<<"Aby opuscic program wybierz 0\n\n";
-        cin>>x;
-
-        if (x==1)
+        if (trybPracy==1)
         {
             Wczytywanie wczytywanie;
             wczytywanie.wczytaj();
@@ -48,17 +53,16 @@ int main()
             tabBis = smartRobot.smartSort(tabBis, 1);
             naiveRobot.sort(tabBis, 1);
         }
-        if (x==2)
+        if (trybPracy==2)
         {
             int rozmiar = 100;
             int tryb = 0;
-            cout<<"Wybierz rozmiar tablicy do sortowania"<<endl;
-            cin>>rozmiar;
+            
             cout<<"Wybierz stopien uporzadkowania danych"<<endl;
             cin>>tryb;
 
-            Generator generator(rozmiar, tryb);
-            generator.setShelf(rozmiar, tryb);
+            Generator generator(rozmiarStartowy, tryb);
+            generator.setShelf(rozmiarStartowy, tryb);
 
             vector<char> tab;
             vector<char> tabBis;
@@ -85,7 +89,7 @@ int main()
             naiveRobot.sort(tabTer, 0);
 
         }
-        if (x==3)
+        if (trybPracy==3)
         {
             int quality;
             cout<<"Podaj jakosc generowanych danych ( 0 - przypadkowa, 1 - przypadek optymistyczny, -1 - przypadek pesymistyczny )"<<endl;
@@ -93,13 +97,13 @@ int main()
             if (quality == 0 || quality == 1 || quality == -1)
             {
                 Test test(0);
-                test.conductTests(10, quality);
+                test.conductTests(iteracje, rozmiarStartowy, krok, quality);
                 test.printResults();
             }
         }
-        if (x==0)
-            break;
-    }
+        
+           
+    
 
     return 0;
 }

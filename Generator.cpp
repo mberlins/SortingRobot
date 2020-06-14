@@ -1,3 +1,6 @@
+// Created by Michał Berliński
+// Klasa odpowiadająca za parametryzowane generowanie danych
+
 #include "Generator.h"
 #include <stdio.h>
 #include <stdlib.h>

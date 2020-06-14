@@ -24,7 +24,7 @@ private:
 
 public:
     Test(int i);
-    void conductTests(int iterations, int quality);
+    void conductTests(int iterations, int rozmiarStartowy, int krok, int quality);
     void printResults();
 
 };
